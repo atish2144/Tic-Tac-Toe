@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-
 import "./Game.css";
 
 function Game() {
@@ -7,6 +6,7 @@ function Game() {
   const [cells, setcells] = useState(Array(9).fill(""));
   const [winner, setwinner] = useState();
 
+  // let a = cells;
   const checkWinner = (squares) => {
     let combos = {
       accross: [
@@ -40,18 +40,30 @@ function Game() {
           squares[pattern[1]] === squares[pattern[2]]
         ) {
           setwinner(squares[pattern[0]]);
-        } else {
-          // let a = pattern.filter((index) => {
-          //   return index === "";
-          //   console.log(a);
-          // });
+          console.log("hii");
+          console.log(squares);
+        } else if (
+          squares[0] !== "" &&
+          squares[1] !== "" &&
+          squares[2] !== "" &&
+          squares[3] !== "" &&
+          squares[4] !== "" &&
+          squares[5] !== "" &&
+          squares[6] !== "" &&
+          squares[7] !== "" &&
+          squares[8] !== ""
+        ) {
+          setwinner(" Draw! No one  ");
         }
         // else if (
-        //   (squares[pattern[0]] === squares[pattern[1]] &&
-        //     squares[pattern[0]] !== squares[pattern[2]]) ||
-        //   squares[pattern[1]] !== squares[pattern[2]]
+        //   ((squares[pattern[0]] === "" ||
+        //     squares[pattern[1]] === "" ||
+        //     squares[pattern[2]] === "") &&
+        //     squares[pattern[0]] === squares[pattern[1]] &&
+        //     squares[pattern[1]] === squares[pattern[2]]) ||
+        //   squares[pattern[1]] === squares[pattern[2]]
         // ) {
-        //   setwinner("No one is winner");
+        //   setwinner(" Its a Draw !No one ");
         // }
       });
     }
@@ -118,7 +130,6 @@ function Game() {
         {winner && (
           <>
             <p className="p1">{winner} is the winner</p>
-            {/* {setcells(Array(9).fill(""))} */}
             <button className="btn1" onClick={() => restart()}>
               Play Again
             </button>
@@ -128,4 +139,5 @@ function Game() {
     </div>
   );
 }
+
 export default Game;
